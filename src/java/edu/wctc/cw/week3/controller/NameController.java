@@ -9,6 +9,7 @@ import edu.wctc.cw.week3.model.Name;
 import edu.wctc.cw.week3.model.NameService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,7 @@ public class NameController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet NameController</title>");            
+            out.println("<title>Servlet NameController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NameController at " + request.getContextPath() + "</h1>");
@@ -38,17 +39,32 @@ public class NameController extends HttpServlet {
         }
     }
 //does it work
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/nameList.jsp");
-            
-            NameService nameService = new NameService();
-            Name name = nameService.getName("101");
+//          
+        NameService nameService = new NameService();
+
+        RequestDispatcher dispatcher = null;
+
+        String id = request.getParameter("id");
+        String search = request.getParameter("search");
+        if (id != null) {
+            Name name = nameService.getName(id);
             request.setAttribute("name", name);
-            dispatcher.forward(request,response);
+            dispatcher = request.getRequestDispatcher("/nameDetail.jsp");
+        } else if (search != null) {
+            List<Name> nameList = nameService.findNames(search);
+            request.setAttribute("nameList", nameList);
+            dispatcher = request.getRequestDispatcher("/nameList.jsp");
+        } else {
+            List<Name> nameList = nameService.getAllNames();
+            request.setAttribute("nameList", nameList);
+            dispatcher = request.getRequestDispatcher("/nameList.jsp");
+        }
+
+        dispatcher.forward(request, response);
     }
 
     @Override
