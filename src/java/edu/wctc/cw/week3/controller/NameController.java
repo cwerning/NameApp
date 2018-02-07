@@ -5,6 +5,8 @@
  */
 package edu.wctc.cw.week3.controller;
 
+import edu.wctc.cw.week3.model.Name;
+import edu.wctc.cw.week3.model.NameService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -42,6 +44,10 @@ public class NameController extends HttpServlet {
 //        processRequest(request, response);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/nameList.jsp");
+            
+            NameService nameService = new NameService();
+            Name name = nameService.getName("101");
+            request.setAttribute("name", name);
             dispatcher.forward(request,response);
     }
 

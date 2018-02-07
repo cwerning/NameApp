@@ -4,6 +4,7 @@
     Author     : wernc
 --%>
 
+<%@page import="edu.wctc.cw.week3.model.Name"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <% Name name = (Name) request.getAttribute("name"); %>
+        <h1>Hello <%= name.getFirst() %>!</h1>
     </body>
 </html>
