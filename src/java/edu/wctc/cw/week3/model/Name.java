@@ -10,6 +10,7 @@ package edu.wctc.cw.week3.model;
  * @author wernc
  */
 public class Name {
+    //get going
     private String id;
     private String first;
     private String last;
