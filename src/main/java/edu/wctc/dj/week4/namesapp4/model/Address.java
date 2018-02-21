@@ -11,6 +11,8 @@ package edu.wctc.dj.week4.namesapp4.model;
  */
 public class Address {
 
+    //this is my address class
+    
     private String address;
     private String city;
     private String state;
