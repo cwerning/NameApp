@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Name Detail</title>
+    </h:head>
+    <p:panelGrid columns="2">
+        <h:outputLabel value="First:" />
+        <h:outputText value="#{nameBean.name.first}"/>
+        
+        <h:outputLabel value="Last:" />
+        <h:outputText value="#{nameBean.name.last}"/>
+        
+        <h:outputLabel value="Street:" />
+        <h:outputText value="#{nameBean.name.address.address}"/>
+        
+        <h:outputLabel value="City:" />
+        <h:outputText value="#{nameBean.name.address.city}"/>
+        
+        <h:outputLabel value="State:" />
+        <h:outputText value="#{nameBean.name.address.state}"/>
+        
+        <h:outputLabel value="First:" />
+        <h:outputText value="#{nameBean.name.address.zip}"/>
+    </p:panelGrid>
+</html>
